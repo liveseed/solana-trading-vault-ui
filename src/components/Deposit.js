@@ -4,7 +4,7 @@ import { depositToVault } from '../services/solana';
 
 const Deposit = () => {
     const { publicKey, sendTransaction } = useWallet();
-    const [amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState(0.1);
 
     const handleDeposit = async () => {
         if (!publicKey) {
@@ -13,7 +13,7 @@ const Deposit = () => {
         }
 
         try {
-            const signature = await depositToVault(publicKey, amount);
+            const signature = await depositToVault(publicKey, amount, sendTransaction);
             console.log('Deposit successful. Signature:', signature);
         } catch (error) {
             console.error('Deposit failed:', error);
